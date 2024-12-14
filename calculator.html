@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-gray-900 text-white p-4 flex justify-between items-center shadow-md">
+        <h1 class="text-2xl font-bold">Elite Calculator</h1>
+        <button id="menu-btn" class="p-2 rounded-md bg-gray-800 hover:bg-gray-700 transition">Menu</button>
+    </header>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 w-64 h-full bg-gray-800 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-lg">
+        <div class="p-6 flex flex-col h-full">
+            <button id="close-btn" class="text-white mb-4 self-end hover:text-gray-300 transition">&times;</button>
+            <nav class="flex flex-col space-y-4">
+                <a href="#" class="text-xl text-white hover:bg-gray-700 p-2 rounded transition">Home</a>
+                <a href="#" class="text-xl text-white hover:bg-gray-700 p-2 rounded transition">Settings</a>
+                <a href="#" class="text-xl text-white hover:bg-gray-700 p-2 rounded transition">History</a>
+                <a href="#" class="text-xl text-white hover:bg-gray-700 p-2 rounded transition">Contact</a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col items-center justify-center p-4">
+        <div id="calculator" class="bg-white p-4 rounded-lg shadow-lg">
+            <input id="display" class="w-full text-right p-2 text-xl font-mono bg-gray-200 rounded mb-4" readonly>
+            <div id="keys" class="grid grid-cols-4 gap-2">
+                <button onclick="appendToDisplay('+')" class="bg-gray-300 text-gray-800 p-2 rounded operator">+</button>
+                <button onclick="appendToDisplay('7')" class="bg-gray-300 text-gray-800 p-2 rounded">7</button>
+                <button onclick="appendToDisplay('8')" class="bg-gray-300 text-gray-800 p-2 rounded">8</button>
+                <button onclick="appendToDisplay('9')" class="bg-gray-300 text-gray-800 p-2 rounded">9</button>
+                <button onclick="appendToDisplay('-')" class="bg-gray-300 text-gray-800 p-2 rounded operator">-</button>
+                <button onclick="appendToDisplay('4')" class="bg-gray-300 text-gray-800 p-2 rounded">4</button>
+                <button onclick="appendToDisplay('5')" class="bg-gray-300 text-gray-800 p-2 rounded">5</button>
+                <button onclick="appendToDisplay('6')" class="bg-gray-300 text-gray-800 p-2 rounded">6</button>
+                <button onclick="appendToDisplay('*')" class="bg-gray-300 text-gray-800 p-2 rounded operator">X</button>
+                <button onclick="appendToDisplay('1')" class="bg-gray-300 text-gray-800 p-2 rounded">1</button>
+                <button onclick="appendToDisplay('2')" class="bg-gray-300 text-gray-800 p-2 rounded">2</button>
+                <button onclick="appendToDisplay('3')" class="bg-gray-300 text-gray-800 p-2 rounded">3</button>
+                <button onclick="appendToDisplay('/')" class="bg-gray-300 text-gray-800 p-2 rounded operator">/</button>
+                <button onclick="appendToDisplay('0')" class="bg-gray-300 text-gray-800 p-2 rounded">0</button>
+                <button onclick="appendToDisplay('.')" class="bg-gray-300 text-gray-800 p-2 rounded operator">.</button>
+                <button onclick="calculate()" class="bg-gray-600 text-white p-2 rounded operator">=</button>
+                <button onclick="clearScreen()" class="bg-gray-600 text-white p-2 rounded operator">C</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white p-4 mt-auto flex justify-center items-center shadow-md">
+        <nav class="flex space-x-4">
+            <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+            <a href="#" class="hover:text-gray-300">Terms of Service</a>
+            <a href="#" class="hover:text-gray-300">Contact Us</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Toggle Sidebar
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('close-btn');
+
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Calculator Functions
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            display.value += value;
+        }
+
+        function clearScreen() {
+            const display = document.getElementById('display');
+            display.value = '';
+        }
+
+        function calculate() {
+            const display = document.getElementById('display');
+            display.value = eval(display.value.replace('X', '*'));
+        }
+    </script>
+</body>
+</html>
