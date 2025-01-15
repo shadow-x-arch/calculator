@@ -13,7 +13,7 @@ function calculate() {
     var display = document.getElementById('display');
     if (display) {
         try {
-            display.value = eval(display.value); // Note: eval is potentially dangerous; use a safer alternative in production.
+            display.value = eval(display.value); 
             console.log("pressed");
         }
         catch (error) {

@@ -9,7 +9,7 @@ function calculate(): void {
   const display = document.getElementById('display') as HTMLInputElement | null;
   if (display) {
     try {
-      display.value = eval(display.value); // Note: eval is potentially dangerous; use a safer alternative in production.
+      display.value = eval(display.value);
       console.log("pressed");
     } catch (error) {
       display.value = "error";
